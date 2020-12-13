@@ -15,9 +15,7 @@ with open('labels.json') as f:
   data = json.load(f)
 
 def allowed_file(filename):
-  # print('filename:', filename)
   extension = filename.rsplit('.', 1)[1].lower()
-  print('true or false', '.' in filename and extension in ALLOWED_EXTENSIONS)
   return '.' in filename and extension in ALLOWED_EXTENSIONS
   
 @app.route('/', methods=['GET', 'POST'])
