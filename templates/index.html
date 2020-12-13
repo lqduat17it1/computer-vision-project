@@ -73,9 +73,6 @@
             margin-top: 20px;
             margin-bottom: 20px;
         }
-        #result span {
-            text-align: center;
-        }
         #preview {
             display: none;
             margin-left: auto;
@@ -158,7 +155,7 @@
                     const label = type === 'Normal' ? 'Bình thường' : (type === 'Pneumonia' ? 'Viêm phổi': 'Chưa xác định');
                     const color = type === 'Normal' ? '#16a085' : (type === 'Pneumonia' ? '#dc3545': '#fff');
                     const advice = type === 'Normal' ? normalAdvice : (type === 'Pneumonia' ? pneumoniaAdvice : 'Phổi của bạn bị gì đó mà chúng tôi chưa thể xác định được');
-                    $("#result").html('<span><center>Kết quả chẩn đoán : <b>'+label+'</b><center><span><br>');
+                    $("#result").html('<center>Kết quả chẩn đoán : <b>'+label+'</b><center></br>');
                     $('#result').append(`<p id="advice">${advice}</p>`)
                     $("#result b").css('color', color);
                     $('#preview').css({'display': 'block'});
