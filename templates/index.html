@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pneumonia</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        body{
+            background: rgba(0,0,0,0.9);
+        }
+        h1 {
+            color: #16a085;
+            text-align: center;
+        }
+        h3 {
+            color: #14ebc0;
+            text-align: center;
+        }
+        form{
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            margin-top: -100px;
+            margin-left: -250px;
+            width: 500px;
+            height: 200px;
+            border: 4px dashed #fff;
+        }
+        form p{
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            line-height: 170px;
+            color: #ffffff;
+            font-family: Arial;
+        }
+        form #file{
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            outline: none;
+            opacity: 0;
+        }
+        form #submit{
+            margin: 0;
+            color: #fff;
+            background: #16a085;
+            border: none;
+            width: 508px;
+            height: 35px;
+            margin-top: -20px;
+            margin-left: -4px;
+            border-radius: 4px;
+            border-bottom: 4px solid #117A60;
+            transition: all .2s ease;
+            outline: none;
+        }
+        form #submit:hover{
+            background: #149174;
+            color: #0C5645;
+        }
+        form #submit:active{
+            border:0;
+        }
+    </style>
+</head>
+<body>
+    <h1>PHÁN ĐOÁN BỆNH VIÊM PHỔI THÔNG QUA HÌNH ẢNH X-QUANG</h1>
+    <h3>Chọn ảnh x-quang </h3>
+    <!-- <form id="form">
+        <input type="file" accept="image/*" name="img" id="file" required/>
+        <input id="submit" type="submit" />
+    </form> -->
+    <form id="form">
+        <input type="file" id="file" accept="image/*" required>
+        <p>Kéo tệp của bạn vào đây hoặc nhấp vào khu vực này.</p>
+        <input type="submit" id="submit" name="XÁC NHẬN">
+    </form>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        
+        $("#submit").click(function() {
+            event.preventDefault();    
+            var form = new FormData();
+            const image = $('#file')[0].files[0];
+            console.log(image);
+            form.append("img", image);
+            
+            var settings = {
+            "url": "http://localhost:5000/index",
+            "method": "POST",
+            "timeout": 0,
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form
+            };
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                document.getElementById("result") = response
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $('form input').change(function () {
+            $('form p').text(this.files.length + " file(s) selected");
+        });
+    });
+</script>
+</html>

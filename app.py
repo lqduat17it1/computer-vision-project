@@ -1,17 +1,20 @@
 import cv2
 import numpy as np
 from keras.models import load_model
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
+from flask_cors import CORS
 
 
 app = Flask(__name__)
+CORS(app)
+
 model = load_model('pneumonia_v2.h5')
 data = {
   0: 'Normal',
   1: 'Pneumonia'
 }
 
-@app.route('/', methods=['POST']) 
+@app.route('/index', methods=['POST'])
 def get_img():
   filestr = request.files['img'].read()
   img = np.frombuffer(filestr, np.uint8)
@@ -24,12 +27,10 @@ def get_img():
     'message': data[pred[0]]
   })
   
-
-@app.route('/api', methods=['GET'])
-def get_tasks():
-    return jsonify({
-      'message': 'Hello Duật đao'
-    })
+@app.route('/', methods=['POST', 'GET'])
+def home():
+  return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+  # print(app.config['STATIC_FOLDER'])
+  app.run(debug=True)
