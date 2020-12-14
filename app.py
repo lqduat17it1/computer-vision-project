@@ -53,6 +53,3 @@ def home():
       return jsonify({
         'message': 'File doesnt support'
       }), 400
-
-if __name__ == '__main__':
-  app.run(debug=True)
