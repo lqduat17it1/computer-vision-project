@@ -11,7 +11,7 @@ COPY ./requirements-raspberry-pi.txt /app/requirements.txt
 WORKDIR /app
 
 RUN pip install -r requirements.txt
-// Install tflite_runtime
+# Install tflite_runtime
 RUN pip install https://github.com/google-coral/pycoral/releases/download/release-frogfish/tflite_runtime-2.5.0-cp37-cp37m-linux_armv7l.whl
 
 COPY . /app
