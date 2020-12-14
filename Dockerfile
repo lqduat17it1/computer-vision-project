@@ -1,4 +1,5 @@
-FROM ubuntu:16.04
+# FROM ubuntu:16.04
+FROM python:3.7-slim-stretch
 
 MAINTAINER Your Name "Duat"
 
