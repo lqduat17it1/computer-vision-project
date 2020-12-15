@@ -10,7 +10,7 @@ CORS(app)
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
-interpreter = Interpreter('model_lite.tflite')
+interpreter = Interpreter('models/lite_model.tflite')
 interpreter.allocate_tensors()
 
 with open('labels.json') as f:
