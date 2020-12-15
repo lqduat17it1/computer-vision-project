@@ -10,7 +10,7 @@ CORS(app)
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
-model = load_model('pneumonia_v2.h5')
+model = load_model('models/keras_model.h5')
 with open('labels.json') as f:
   data = json.load(f)
 
