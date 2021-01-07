@@ -41,6 +41,7 @@ def home():
         img = cv2.resize(img, (224, 224))
         img = np.expand_dims(img, 0)
         pred = model.predict(img)
+        print(pred)
         pred = np.argmax(np.round(pred), axis=1)
         return jsonify({
           'message': data[str(pred[0])]

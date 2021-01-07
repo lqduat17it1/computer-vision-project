@@ -115,7 +115,7 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(() => {
         
         const normalAdvice = 'Bạn đang có một lá phổi cực kỳ khỏe mạnh. Hãy giữ gìn nó nhé ❤️';
         const pneumoniaAdvice = 'Bạn bị chẩn đoán viêm phổi.<br>Hãy giữ gìn sức khỏe của mình nếu không muốn xuống lỗ sớm';
@@ -148,7 +148,7 @@
                     data: form
                 };
                 
-                $.ajax(config).done(function (response) {
+                $.ajax(config).done(response => {
                     $('.loader').css('display', 'none');
                     const res = JSON.parse(response);
                     const type = res.message;
@@ -159,6 +159,15 @@
                     $('#result').append(`<p id="advice">${advice}</p>`)
                     $("#result b").css('color', color);
                     $('#preview').css({'display': 'block'});
+                }).fail(error => {
+                    const { responseText } = error;
+                    const { message } = JSON.parse(responseText);
+                    console.log(message);
+
+                    $("#result").html('<center>Lỗi : <b>'+message+'</b><center></br>');
+                    $("#result b").css('color', 'red');
+
+                    $('.loader').css('display', 'none');
                 });
             }
         }
